@@ -1,1 +1,28 @@
-<p>bookstore works!</p>
+<section class="d-flex flex-column gap-2">
+  <h1 class="text-primary">Librería</h1>
+
+  <div class="d-flex flex-column gap-4">
+    <nexus-products-grid
+      [products]="bestsellerProducts()"
+      [orientation]="productCardOrientation.Horizontal"
+    >
+      <ng-container header>
+        <h3>Más vendidos</h3>
+        <p>
+          Los libros más populares del momento. Desde clásicos de programación hasta best-sellers
+          que transformarán tu forma de pensar y trabajar.
+        </p>
+      </ng-container>
+    </nexus-products-grid>
+
+    <nexus-products-grid [products]="allProducts()" [orientation]="productCardOrientation.Vertical">
+      <ng-container header>
+        <h3>Todos</h3>
+        <p>
+          Explora nuestro catálogo completo de libros técnicos, ficción y no ficción para ampliar
+          tus conocimientos.
+        </p>
+      </ng-container>
+    </nexus-products-grid>
+  </div>
+</section>

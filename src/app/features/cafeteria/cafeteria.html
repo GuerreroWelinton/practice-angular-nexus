@@ -1,1 +1,25 @@
-<p>cafeteria works!</p>
+<section class="d-flex flex-column gap-2">
+  <h1 class="text-primary">Cafetería</h1>
+
+  <div class="d-flex flex-column gap-4">
+    <nexus-products-grid
+      [products]="bestsellerProducts()"
+      [orientation]="productCardOrientation.Horizontal"
+    >
+      <ng-container header>
+        <h3>Más vendidos</h3>
+        <p>
+          Lo último de la cafetería, recién salido para ti. Prueba nuevas bebidas y snacks cada
+          semana.
+        </p>
+      </ng-container>
+    </nexus-products-grid>
+
+    <nexus-products-grid [products]="allProducts()" [orientation]="productCardOrientation.Vertical">
+      <ng-container header>
+        <h3>Todos</h3>
+        <p>Todo el menú completo para elegir a tu ritmo y pedir fácil desde la app.</p>
+      </ng-container>
+    </nexus-products-grid>
+  </div>
+</section>

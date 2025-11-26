@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class Contact {
   protected readonly formBuilder = inject(FormBuilder);
+
+  protected readonly isProcessing = signal(false);
 
   readonly contactForm = this.formBuilder.group({
     fullName: ['', [Validators.required, Validators.minLength(3)]],
@@ -22,10 +24,18 @@ export class Contact {
   readonly phoneNumber = this.contactForm.get('phoneNumber');
   readonly message = this.contactForm.get('message');
 
-  onSubmit() {
+  async onSubmit() {
     if (this.contactForm.valid) {
-      alert('Formulario enviado con éxito');
+      this.isProcessing.set(true);
+
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       this.contactForm.reset();
+      this.isProcessing.set(false);
+
+      alert(
+        '¡Mensaje enviado con éxito! 📧\n\nGracias por contactarnos. Te responderemos a la brevedad.\n\n¡Que tengas un excelente día!',
+      );
     } else {
       this.contactForm.markAllAsTouched();
     }

@@ -58,11 +58,30 @@
   aspect-ratio: 1 / 1;
   object-fit: contain;
   max-width: 300px;
-  height: 400px;
 }
 
 @media (min-width: 576px) {
   .img-hero {
-    height: 200px;
+    height: 250px;
   }
+}
+
+.category-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  /* box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important; */
+}
+
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover .icon-wrapper {
+  transform: scale(1.1);
 }

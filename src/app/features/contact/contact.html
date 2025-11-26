@@ -1,5 +1,5 @@
 <section class="d-flex flex-column gap-2">
-  <h1>Contacto</h1>
+  <h1 class="text-primary">Contacto</h1>
 
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <div class="form-floating mb-3">
@@ -94,6 +94,17 @@
       }
     </div>
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="isProcessing() || contactForm.invalid"
+    >
+      @if (isProcessing()) {
+        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+        Enviando...
+      } @else {
+        Enviar
+      }
+    </button>
   </form>
 </section>
