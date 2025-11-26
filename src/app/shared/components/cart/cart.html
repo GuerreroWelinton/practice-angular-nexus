@@ -38,5 +38,68 @@
       <span>Total:</span>
       <span class="fw-bold">{{ totalPrice() | currency }}</span>
     </div>
+
+    <form [formGroup]="checkoutForm" class="mt-3">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title mb-3">Opciones de entrega</h6>
+
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input"
+              type="radio"
+              formControlName="deliveryOption"
+              value="coworking"
+              id="deliveryCoworking"
+            />
+            <label class="form-check-label" for="deliveryCoworking">
+              <small class="d-block text-muted">Recibir en mesa de coworking</small>
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              formControlName="deliveryOption"
+              value="counter"
+              id="deliveryCounter"
+            />
+            <label class="form-check-label" for="deliveryCounter">
+              <small class="d-block text-muted">Retirar en Mostrador de Cafetería</small>
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button
+        type="button"
+        class="btn btn-danger btn-sm"
+        (click)="clearCart()"
+        [disabled]="isProcessing()"
+      >
+        Vaciar carrito
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        (click)="finishPurchase()"
+        [disabled]="isProcessing() || checkoutForm.invalid"
+      >
+        @if (isProcessing()) {
+          <span
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Procesando...
+        } @else {
+          Finalizar compra
+        }
+      </button>
+    </div>
   }
 </div>
