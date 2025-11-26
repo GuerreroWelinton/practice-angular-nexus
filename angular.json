@@ -37,7 +37,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "nexus",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -48,11 +48,15 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/assets/styles/bootstrap.min.css", "src/styles.css"],
+            "scripts": ["src/assets/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {

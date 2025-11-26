@@ -1,0 +1,30 @@
+<div class="accordion" id="faqAccordion">
+  @for (item of accordionItems(); track $index) {
+  <div class="accordion-item">
+    <h2 class="accordion-header" [id]="'heading' + $index">
+      <button
+        type="button"
+        data-bs-toggle="collapse"
+        class="accordion-button"
+        [class.collapsed]="$index !== 0"
+        [attr.data-bs-target]="'#collapse-' + $index"
+        [attr.aria-expanded]="$index === 0 ? 'true' : 'false'"
+        [attr.aria-controls]="'collapse-' + $index"
+      >
+        {{ item.title }}
+      </button>
+    </h2>
+    <div
+      data-bs-parent="#faqAccordion"
+      class="accordion-collapse collapse"
+      [class.show]="$index === 0"
+      [id]="'collapse-' + $index"
+      [attr.aria-labelledby]="'heading-' + $index"
+    >
+      <div class="accordion-body">
+        {{ item.content }}
+      </div>
+    </div>
+  </div>
+  }
+</div>

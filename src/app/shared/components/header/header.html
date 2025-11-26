@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand text-white" routerLink="/">
+      <img src="assets/images/logo.png" alt="Librería Nexus - Logo oficial" width="50" />
+      Nexus
+    </a>
+
+    <div class="d-flex justify-content-between gap-2">
+      <div class="d-block d-lg-none d-flex align-items-center justify-content-center gap-2">
+        <ng-container *ngTemplateOutlet="cartButton"> </ng-container>
+        <ng-container *ngTemplateOutlet="themeButton"> </ng-container>
+      </div>
+
+      <button
+        class="navbar-toggler collapsed btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+        aria-controls="navbarContent"
+        aria-expanded="false"
+        aria-label="Abrir menú de navegación"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto">
+        @for (item of headerNavigationItems; track $index) {
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="'active'" [routerLink]="item.path">
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <!-- <form class="d-flex me-2 mb-2">
+        <input class="form-control me-2" type="search" placeholder="Buscar" />
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+      </form> -->
+
+      <div class="d-none d-lg-block">
+        <div class="d-flex align-items-center justify-content-center gap-2">
+          <ng-container *ngTemplateOutlet="cartButton"></ng-container>
+          <ng-container *ngTemplateOutlet="themeButton"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<ng-template #cartButton>
+  <button
+    class="btn btn-primary position-relative lh-1"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasCart"
+    aria-controls="offcanvasCart"
+  >
+    <nexus-feather-icon iconName="shopping-cart"></nexus-feather-icon>
+
+    <!-- <div class="position-absolute" [style.top.px]="-8" [style.right.px]="-10">
+      <span class="badge">{{ totalItemsInCart() }}</span>
+    </div> -->
+  </button>
+</ng-template>
+
+<ng-template #themeButton>
+  <!-- <button class="btn btn-primary lh-1" (click)="toggleTheme()">
+    <nexus-feather-icon [iconName]="currentTheme() === 'light' ? 'moon' : 'sun'">
+    </nexus-feather-icon>
+  </button> -->
+</ng-template>

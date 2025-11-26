@@ -1,0 +1,99 @@
+<section class="d-flex flex-column gap-2">
+  <h1>Contacto</h1>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="fullName?.invalid && fullName?.touched"
+        [class.is-valid]="fullName?.valid && fullName?.touched"
+        id="fullName"
+        formControlName="fullName"
+        placeholder="Welinton Guerrero"
+      />
+      <label for="fullName">Nombre Completo</label>
+      @if (fullName?.invalid && fullName?.touched) {
+        <div class="invalid-feedback d-block">
+          @if (fullName?.errors?.['required']) {
+            <span>El nombre es requerido.</span>
+          }
+          @if (fullName?.errors?.['minlength']) {
+            <span>El nombre debe tener al menos 3 caracteres.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        [class.is-invalid]="email?.invalid && email?.touched"
+        [class.is-valid]="email?.valid && email?.touched"
+        id="email"
+        formControlName="email"
+        placeholder="guerrerozamora213@gmail.com"
+      />
+      <label for="email">Email</label>
+      @if (email?.invalid && email?.touched) {
+        <div class="invalid-feedback d-block">
+          @if (email?.errors?.['required']) {
+            <span>El email es requerido.</span>
+          }
+          @if (email?.errors?.['email']) {
+            <span>Ingrese un email válido.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="tel"
+        class="form-control"
+        [class.is-invalid]="phoneNumber?.invalid && phoneNumber?.touched"
+        [class.is-valid]="phoneNumber?.valid && phoneNumber?.touched"
+        id="phoneNumber"
+        formControlName="phoneNumber"
+        placeholder="0989194770"
+      />
+      <label for="phoneNumber">Número de Teléfono</label>
+      @if (phoneNumber?.invalid && phoneNumber?.touched) {
+        <div class="invalid-feedback d-block">
+          @if (phoneNumber?.errors?.['required']) {
+            <span>El teléfono es requerido.</span>
+          }
+          @if (phoneNumber?.errors?.['pattern']) {
+            <span>Ingrese un número válido (mínimo 10 dígitos).</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-floating mb-3">
+      <textarea
+        class="form-control"
+        [class.is-invalid]="message?.invalid && message?.touched"
+        [class.is-valid]="message?.valid && message?.touched"
+        id="message"
+        formControlName="message"
+        placeholder="Escriba su mensaje aquí..."
+        style="height: 150px"
+      ></textarea>
+      <label for="message">Mensaje</label>
+      @if (message?.invalid && message?.touched) {
+        <div class="invalid-feedback d-block">
+          @if (message?.errors?.['required']) {
+            <span>El mensaje es requerido.</span>
+          }
+          @if (message?.errors?.['minlength']) {
+            <span>El mensaje debe tener al menos 10 caracteres.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</section>
