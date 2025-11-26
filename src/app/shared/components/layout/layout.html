@@ -1,9 +1,17 @@
 <div class="d-flex flex-column min-vh-100 pt-5">
   <nexus-header></nexus-header>
 
-  <div class="container py-5 d-flex flex-column gap-4 flex-grow-1">
+  <div class="container py-5 d-flex flex-column flex-grow-1">
     <router-outlet></router-outlet>
   </div>
 
   <nexus-footer></nexus-footer>
 </div>
+
+<nexus-modal></nexus-modal>
+
+<nexus-sidebar>
+  <ng-container title> Mi carrito de compras </ng-container>
+
+  <nexus-cart></nexus-cart>
+</nexus-sidebar>

@@ -60,15 +60,15 @@
   >
     <nexus-feather-icon iconName="shopping-cart"></nexus-feather-icon>
 
-    <!-- <div class="position-absolute" [style.top.px]="-8" [style.right.px]="-10">
-      <span class="badge">{{ totalItemsInCart() }}</span>
-    </div> -->
+    <div class="position-absolute" [style.top.px]="-8" [style.right.px]="-10">
+      <span class="badge">{{ totalCartItems() }}</span>
+    </div>
   </button>
 </ng-template>
 
 <ng-template #themeButton>
-  <!-- <button class="btn btn-primary lh-1" (click)="toggleTheme()">
+  <button class="btn btn-primary lh-1" (click)="toggleTheme()">
     <nexus-feather-icon [iconName]="currentTheme() === 'light' ? 'moon' : 'sun'">
     </nexus-feather-icon>
-  </button> -->
+  </button>
 </ng-template>

@@ -1,0 +1,24 @@
+<section class="d-flex flex-column gap-2">
+  <ng-content select="[header]"></ng-content>
+
+  <ng-content select="[filters]"></ng-content>
+
+  <div class="row g-3">
+    @for (product of products(); track $index) {
+      <div [class]="columnClasses()">
+        <nexus-product-card
+          [product]="product"
+          [orientation]="orientation()"
+          (addToCart)="addToCart($event)"
+          (addToFavorites)="addToFavorites($event)"
+          (viewDetails)="viewDetails($event)"
+        >
+        </nexus-product-card>
+      </div>
+    } @empty {
+      <div class="col-12">
+        <p>No hay productos disponibles.</p>
+      </div>
+    }
+  </div>
+</section>

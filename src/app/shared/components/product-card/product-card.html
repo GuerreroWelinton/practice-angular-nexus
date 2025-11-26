@@ -1,0 +1,123 @@
+<div class="card h-100">
+  <div
+    class="d-none image-container"
+    [class]="{ 'd-sm-block': orientation() === productCardOrientation.Vertical }"
+    (click)="viewDetails.emit(product())"
+  >
+    <img
+      class="image-blur"
+      [style.height.px]="300"
+      [src]="product().imageUrl"
+      [alt]="product().name"
+    />
+
+    <div class="image-overlay d-flex align-items-center justify-content-center text-white">
+      <nexus-feather-icon iconName="eye" class="hover-icon"></nexus-feather-icon>
+    </div>
+
+    @if (product().discountPercentage && product().discountedPrice) {
+      <span class="position-absolute start-0 mt-3 badge bg-danger px-3 py-2">
+        {{ product().discountPercentage }} %
+      </span>
+    }
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div
+        class="col-4"
+        [class]="{ 'col-sm-0': orientation() === productCardOrientation.Vertical }"
+      >
+        <div class="d-flex align-items-center justify-content-center h-100">
+          <div
+            class="d-block image-container"
+            [class]="{ 'd-sm-none': orientation() === productCardOrientation.Vertical }"
+            (click)="viewDetails.emit(product())"
+          >
+            <img
+              class="image-blur"
+              [style.height.px]="product().source === productSource.Cafeteria ? 140 : 160"
+              [src]="product().imageUrl"
+              [alt]="product().name"
+            />
+
+            <div class="image-overlay d-flex align-items-center justify-content-center text-white">
+              <nexus-feather-icon iconName="eye" class="hover-icon"></nexus-feather-icon>
+            </div>
+
+            @if (product().discountPercentage && product().discountedPrice) {
+              <span class="position-absolute start-0 mt-3 badge bg-danger px-3 py-2">
+                {{ product().discountPercentage }} %
+              </span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="col-8"
+        [class]="{ 'col-sm-12': orientation() === productCardOrientation.Vertical }"
+      >
+        <div class="d-flex flex-column gap-2">
+          <h5 class="card-title mb-0 text-primary text-truncate">
+            {{ product().name }}
+          </h5>
+
+          @if (product().author) {
+            <small class="text-muted">{{ product().author }}</small>
+          }
+
+          <p class="card-text mb-0 two-line-ellipsis">{{ product().shortDescription }}</p>
+
+          <p class="card-text mb-0">
+            Precio:
+
+            @if (!product().discountPercentage || !product().discountedPrice) {
+              <span class="fw-bold ms-1">
+                {{ product().price | currency }}
+              </span>
+            }
+
+            @if (product().discountPercentage && product().discountedPrice) {
+              <span class="text-muted text-decoration-line-through ms-1">
+                {{ product().price | currency }}
+              </span>
+
+              <span class="fw-bold text-success ms-1">
+                {{ product().discountedPrice | currency }}
+              </span>
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div
+      class="btn-group-vertical btn-group-sm w-100 gap-2"
+      role="group"
+      aria-label="Grupo de botones para agregar al carrito o favoritos"
+    >
+      <button
+        type="button"
+        class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2"
+        title="Agregar producto al carrito"
+        (click)="addToCart.emit(product())"
+      >
+        <nexus-feather-icon iconName="shopping-cart"></nexus-feather-icon>
+        <span> Añadir al carrito </span>
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-secondary w-100 d-flex align-items-center justify-content-center gap-2"
+        title="Agregar producto a favoritos"
+        (click)="addToFavorites.emit(product())"
+      >
+        <nexus-feather-icon iconName="star" fill="yellow" stroke="yellow"></nexus-feather-icon>
+        <span> Añadir a favoritos </span>
+      </button>
+    </div>
+  </div>
+</div>

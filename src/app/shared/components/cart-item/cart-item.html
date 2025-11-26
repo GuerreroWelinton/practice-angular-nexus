@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-start gap-2 py-2 position-relative">
+  <div class="h-100 d-flex justify-content-center align-items-center">
+    <div class="position-relative image-container" (click)="displayProductDetails.emit(item())">
+      <img
+        class="image-blur"
+        [style.height.px]="75"
+        [style.width.px]="50"
+        [src]="item().product.imageUrl"
+        [alt]="item().product.name"
+      />
+
+      <div class="image-overlay d-flex align-items-center justify-content-center text-white">
+        <nexus-feather-icon iconName="eye" class="hover-icon"></nexus-feather-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column justify-content-center align-items-start">
+    <h6 class="mb-0">{{ item().product.name }}</h6>
+
+    @if (item().product.author) {
+      <small class="text-muted">{{ item().product.author }}</small>
+    }
+
+    <p class="card-text mb-0">
+      @if (!item().product.discountPercentage || !item().product.discountedPrice) {
+        <span class="fw-bold ms-1">
+          {{ item().product.price | currency }}
+        </span>
+      }
+
+      @if (item().product.discountPercentage && item().product.discountedPrice) {
+        <span class="badge bg-danger px-2 ms-1"> {{ item().product.discountPercentage }} % </span>
+
+        <span class="text-muted text-decoration-line-through ms-1">
+          {{ item().product.price | currency }}
+        </span>
+
+        <span class="fw-bold text-success ms-1">
+          {{ item().product.discountedPrice | currency }}
+        </span>
+      }
+    </p>
+  </div>
+
+  <div class="position-absolute end-0 top-0 mt-1">
+    <button
+      type="button"
+      class="btn p-1 px-2 lh-1"
+      title="Eliminar del carrito"
+      (click)="removeFromCart.emit(item())"
+    >
+      <nexus-feather-icon iconName="trash-2" [height]="16" [width]="16"> </nexus-feather-icon>
+    </button>
+  </div>
+
+  <div class="position-absolute end-0 bottom-0 mb-2">
+    <div
+      class="btn-group btn-group-sm gap-1"
+      role="group"
+      aria-label="Grupo de botones para aumentar o disminuir cantidad"
+    >
+      <button
+        type="button"
+        class="btn btn-secondary lh-1 px-2 py-1"
+        title="Disminuir cantidad"
+        [class.disabled]="item().quantity <= 1"
+        (click)="decreaseQuantity.emit(item())"
+      >
+        <span class="fs-6 fw-bold">-</span>
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-primary lh-1 px-2 py-1"
+        title="Cantidad"
+        [style.pointer-events]="'none'"
+      >
+        <span class="fw-bold">{{ item().quantity }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-secondary lh-1 px-2 py-1"
+        title="Aumentar cantidad"
+        (click)="increaseQuantity.emit(item())"
+      >
+        <span class="fs-6 fw-bold">+</span>
+      </button>
+    </div>
+  </div>
+</div>

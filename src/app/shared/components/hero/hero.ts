@@ -9,6 +9,6 @@ import { HeroItem } from '../../interfaces/hero-interface';
 })
 export class Hero {
   title = input.required<string>();
-  subtitle = input.required<string>();
+  author = input.required<string>();
   heroItems = input.required<HeroItem[]>();
 }

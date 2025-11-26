@@ -1,0 +1,72 @@
+<button
+  #openModalButton
+  type="button"
+  class="btn btn-primary d-none"
+  data-bs-toggle="modal"
+  data-bs-target="#modalNexus"
+>
+  Abrir Modal
+</button>
+
+<div
+  #modalElement
+  class="modal fade"
+  id="modalNexus"
+  tabindex="-1"
+  aria-labelledby="modalNexusLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNexusLabel">{{ product()?.name }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="close()"
+        >
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-5">
+            <div class="h-100 d-flex justify-content-center align-items-center">
+              <img
+                class="image-blur"
+                [style.height.px]="200"
+                [src]="product()?.imageUrl"
+                [alt]="product()?.name"
+              />
+            </div>
+          </div>
+
+          <div class="col-7">
+            @if (product()?.author) {
+              <div>
+                <small class="text-muted">
+                  {{ `${product()?.author} (${product()?.year})` }}
+                </small>
+              </div>
+            }
+
+            @for (item of product()?.category; track $index) {
+              <span class="badge bg-secondary mb-2 me-2">{{ item }}</span>
+            }
+
+            <p class="card-text mb-0">{{ product()?.longDescription }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">
+          Volver a la tienda
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
