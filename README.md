@@ -1,38 +1,38 @@
-# Librería Nexus — Angular 20
+# Nexus Library — Angular 20
 
-Proyecto educativo SPA en Angular para Nexus: reúne en una sola aplicación una librería universitaria, servicios de cafetería y reserva de espacios de coworking.
+An educational Angular SPA project for Nexus that brings together a university library, cafeteria services, and coworking space reservations in a single application.
 
-## Qué incluye
+## What’s Included
 
-- Catálogo de productos/libros con tarjetas y detalles visuales.
-- Carrito de compras con gestión centralizada del estado.
-- Secciones informativas como inicio, FAQs, contacto y coworking.
-- Interfaz responsive con Bootstrap y componentes reutilizables.
-- Datos locales de ejemplo, pensados para practicar Angular sin depender de una API real.
+* A product and book catalog with cards and visual details.
+* A shopping cart with centralized state management.
+* Informational sections such as Home, FAQs, Contact, and Coworking.
+* A responsive interface built with Bootstrap and reusable components.
+* Local sample data designed for practicing Angular without relying on a real API.
 
-## Cómo ponerlo en marcha
+## Getting Started
 
-1. Instala dependencias:
+1. Install the dependencies:
 
 ```bash
 npm install
 ```
 
-2. Arranca el entorno de desarrollo:
+2. Start the development environment:
 
 ```bash
 npm start
 ```
 
-3. Abre la aplicación en:
+3. Open the application at:
 
 ```bash
 http://localhost:4200/
 ```
 
-## Scripts útiles
+## Useful Scripts
 
 ```bash
-npm run build   # compila la aplicación
-npm test        # ejecuta las pruebas
+npm run build   # builds the application
+npm test        # runs the tests
 ```
